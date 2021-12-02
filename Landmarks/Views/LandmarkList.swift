@@ -8,9 +8,18 @@
 import SwiftUI
 
 struct LandmarkList: View {
+    @State private var showFavoritesOnly = false
+    
+    // Compute a filtered version of the landmarks list
+    var filteredLandmarks: [Landmark] {
+        landmarks.filter { landmark in
+            (!showFavoritesOnly || landmark.isFavorite)
+        }
+    }
+    
     var body: some View {
         NavigationView {
-            List(landmarks) { landmark in
+            List(filteredLandmarks) { landmark in
                 // Provide the destination view and the content of a row when you declare a NavigationLink.
                 NavigationLink {
                     LandmarkDetail(landmark: landmark)
@@ -25,11 +34,6 @@ struct LandmarkList: View {
 
 struct LandmarkList_Previews: PreviewProvider {
     static var previews: some View {
-        // Place a ForEach instance inside a List or other container type to create a dynamic list.
-        ForEach(["iPhone SE (2nd generation)", "iPhone XS Max"], id: \.self) { deviceName in
-            LandmarkList()
-                .previewDevice(PreviewDevice(rawValue: deviceName))
-                .previewDisplayName(deviceName)
-        }
+        LandmarkList()
     }
 }
