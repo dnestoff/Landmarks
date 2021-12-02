@@ -44,6 +44,7 @@ struct LandmarkList: View {
 
 struct LandmarkList_Previews: PreviewProvider {
     static var previews: some View {
+        // Apply .environmentObject modifier so views further down in  view hierarchy can read data objects passed through env
         LandmarkList()
             .environmentObject(ModelData())
     }
