@@ -15,6 +15,8 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
+        // Update ContentView preview to add the model object to the environment, making object available to any subview
         ContentView()
+            .environmentObject(ModelData())
     }
 }
