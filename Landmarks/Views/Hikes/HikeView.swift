@@ -37,6 +37,7 @@ struct HikeView: View {
                 Spacer()
 
                 Button {
+                    // Making animations take longer is a good way to iterate on animations
                     withAnimation(.easeInOut(duration: 0.25)) {
                         showDetail.toggle()
                     }
