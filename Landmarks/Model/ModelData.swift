@@ -6,6 +6,12 @@
 //
 
 import Foundation
+import Combine
+
+// Declare new model type that conforms to ObservableObject protocol from the Combine framework.
+final class ModelData: ObservableObject {
+    @Published var landmarks: [Landmark] = load("landmarkData.json")
+}
 
 // Create an array of landmarks initialized from landmarkData.json.
 var landmarks: [Landmark] = load("landmarkData.json")
