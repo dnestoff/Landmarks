@@ -1,0 +1,41 @@
+//
+//  CategoryHome.swift
+//  Landmarks
+//
+//  Created by Third User on 12/7/21.
+//
+
+import SwiftUI
+
+struct CategoryHome: View {
+    @EnvironmentObject var modelData: ModelData
+    
+    var body: some View {
+        NavigationView {
+            // Display the categories in Landmarks using a List
+            List {
+                modelData.features[0].image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height:200)
+                    .clipped()
+                    .listRowInsets(EdgeInsets())
+                
+                ForEach(modelData.categories.keys.sorted(), id: \.self) { key in
+                    // pass category info to instances of row type
+                    CategoryRow(categoryName: key, items: modelData.categories[key]!)
+                }
+                .listRowInsets(EdgeInsets())
+            }
+            .navigationTitle("Featured")
+
+        }
+    }
+}
+
+struct CategoryHome_Previews: PreviewProvider {
+    static var previews: some View {
+        CategoryHome()
+            .environmentObject(ModelData())
+    }
+}
