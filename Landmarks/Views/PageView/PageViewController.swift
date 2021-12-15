@@ -13,7 +13,8 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
     var pages: [Page]
     @Binding var currentPage: Int
     
-    // SwiftUI calls makeCoordinator() before makeUIViewController(context:), so you have access to the coordinator object when configuring view controller
+    // Return an instance of the coordinator type from makeCoordinator(). SwiftUI manages its life cycle and provides it as part of the 'context' parameter in other required methods.
+        // SwiftUI calls makeCoordinator() before makeUIViewController(context:), so you have access to the coordinator object when configuring view controller
         // Tip: use this coordinator to implement common Cocoa patterns, such as delegates, data sources, and responding to user events via target-action
     func makeCoordinator() -> Coordinator {
             Coordinator(self)
